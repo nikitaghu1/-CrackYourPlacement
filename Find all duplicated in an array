@@ -1,0 +1,27 @@
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+      /*  int element=0;
+        Arrays.sort(nums);
+        List<Integer> result=new ArrayList<>();
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]==nums[i+1]){
+                result.add(nums[i]);
+                
+            }
+        }//O(nlogn) tc and sc O(n)
+        return result;*/
+        //2nd approach tc O(n) and sc O(1)
+        List<Integer> result=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+             int index=Math.abs(nums[i])-1;
+             if(nums[index]<0){
+               result.add(Math.abs(nums[i]));
+             }else{
+               
+                 nums[index]=-nums[index];
+             }
+        }
+        return result;
+        
+    }
+}
