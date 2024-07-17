@@ -1,0 +1,46 @@
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+      /*if(root==null) return 0;
+     
+      int leftDiameter=diameterOfBinaryTree(root.left);
+       int rightDiameter=diameterOfBinaryTree(root.right);
+        int lh=height(root.left);
+      int rh=height(root.right);
+      int selfDiameter=rh+lh;
+      return Math.max(selfDiameter,Math.max(leftDiameter,rightDiameter));
+     
+    }//tc O(n^2) 
+    private int height(TreeNode root){
+        if(root==null) return 0;
+       int lh=height(root.left);
+       int rh=height(root.right);
+       return Math.max(rh,lh)+1;
+    }*/
+    //2nd approach in linear tc
+    if(root==null) return 0;
+    Info ans=diameter(root);
+    return ans.dia;
+   
+    }
+    public Info diameter(TreeNode root){
+        if(root==null){
+return new Info(0,0);
+        } 
+        Info leftInfo=diameter(root.left);
+        Info rightInfo=diameter(root.right);
+        int Dia=Math.max(leftInfo.ht+rightInfo.ht,Math.max(leftInfo.dia,rightInfo.dia));
+        int ht=Math.max(leftInfo.ht,rightInfo.ht)+1;
+        return new Info(Dia,ht);
+
+    }
+
+    class Info{
+        int dia;
+        int ht;
+        public Info(int dia,int ht){
+            this.dia=dia;
+            this.ht=ht;
+        }
+
+    }
+}
