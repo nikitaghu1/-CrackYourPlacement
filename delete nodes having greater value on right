@@ -1,0 +1,42 @@
+class Solution
+{
+    Node compute(Node head)
+    {
+        // your code here
+        if (head == null || head.next == null) {
+            return head; // No or only one node, nothing to remove.
+        }
+        head=reverseList(head);
+        Node curr=head;
+        Node maxNode=head;
+       while(curr!=null&&curr.next!=null){
+             if(curr.next.data<maxNode.data){
+                 curr.next=curr.next.next;
+                
+             }else{
+                 maxNode=curr.next;
+                 curr=curr.next;
+                 
+                 
+             }
+       }
+     
+        head=reverseList(head);
+        return head;
+    }
+       
+        private Node reverseList(Node head){
+            Node prev=null;
+            Node curr=head;
+            Node next;
+            while(curr!=null){
+                next=curr.next;
+                curr.next=prev;
+                prev=curr;
+                curr=next;
+            }
+            return prev;
+        }
+    
+}
+  
