@@ -1,0 +1,65 @@
+class Solution {
+    // Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head) {
+        // add your code here
+        if(head==null||head.next==null) return head;
+        Node zeroStart=null;
+        Node zeroEnd=null;
+          Node firstStart=null;
+        Node firstEnd=null;
+          Node secondStart=null;
+        Node secondEnd=null;
+        
+        Node ptr=head;
+      
+       while(ptr!=null){
+            int data = ptr.data;
+            Node nextNode = ptr.next;
+           if(data==0){
+               if(zeroStart==null){
+                    zeroStart=ptr;
+               zeroEnd=ptr;
+               }
+               else{
+                   zeroEnd.next=ptr;
+                   zeroEnd=ptr;
+               }
+           }else if(data==1){
+               if(firstStart==null){
+                    firstStart=ptr;
+               firstEnd=ptr;
+               }
+               else{
+                   firstEnd.next=ptr;
+                   firstEnd=ptr;
+               }
+           }else{
+          
+               if(secondStart==null){
+                    secondStart=ptr;
+               secondEnd=ptr;
+               }
+               else{
+                   secondEnd.next=ptr;
+                   secondEnd=ptr;
+               }
+           
+           }
+           ptr=nextNode;
+       }
+       // Connect the three partitions and update the head.
+        if (zeroStart != null) {
+            head = zeroStart;
+            zeroEnd.next = (firstStart != null) ? firstStart : secondStart;
+        }
+        if (firstStart != null) {
+            head = (zeroStart != null) ? zeroStart : firstStart;
+            firstEnd.next = secondStart;
+        }
+        if (secondStart != null) {
+            head = (zeroStart != null || firstStart != null) ? head : secondStart;
+            secondEnd.next = null; // The end of the list
+        }
+       return head;
+    }
+}
