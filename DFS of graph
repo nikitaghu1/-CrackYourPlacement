@@ -1,0 +1,31 @@
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+       ArrayList<Integer> res=new ArrayList<>();
+       boolean vis[]=new boolean[V];
+      
+                dfsUtil(0,res,vis,adj);
+           
+          
+          
+       
+        return res;
+    }
+    
+       public void dfsUtil(int curr, ArrayList<Integer> res,boolean vis[],ArrayList<ArrayList<Integer>> adj){
+           vis[curr]=true;
+           res.add(curr);
+           for(int i=0;i<adj.get(curr).size();i++){
+               int e=adj.get(curr).get(i);
+               if(!vis[e]){
+                   dfsUtil(e,res,vis,adj);
+               }
+           }
+           
+         
+       }
+       
+      
+
+}
