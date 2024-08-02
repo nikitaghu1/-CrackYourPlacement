@@ -1,0 +1,22 @@
+class Solution 
+{
+    public void inOrder(TreeNode node,int k,int result[]){
+        if(node==null)return;
+        inOrder(node.left,k,result);
+        result[0]=result[0]+1;
+        if(result[0]==k){
+            result[1]=node.val;
+            return;
+        }
+        inOrder(node.right,k,result);
+        return;
+    }
+
+   
+    public int kthSmallest(TreeNode root, int k) 
+    {
+       int result[]={0,-1};
+        inOrder(root,k,result);
+        return result[1];
+    }
+}
