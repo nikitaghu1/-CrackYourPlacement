@@ -1,0 +1,25 @@
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        int counter = 0;
+        ListNode temp = head;
+        while (temp != null) { // Fix loop to count all nodes
+            temp = temp.next;
+            counter++;
+        }
+
+        int res = counter - n;
+        if (res == 0) {
+            return head.next; // Handle the case when the node to be removed is the head
+        }
+
+        ListNode slow = head;
+        while (res >1) { // Adjust to stop one node before the target
+            slow = slow.next;
+            res--;
+        }
+
+        slow.next = slow.next.next;
+        return head;
+    }
+}//O(n) tc 
+//O(1) SC
