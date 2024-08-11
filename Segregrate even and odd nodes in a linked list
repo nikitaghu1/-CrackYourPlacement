@@ -1,0 +1,25 @@
+class Solution {
+    Node divide(Node head) {
+        // code here
+        if(head==null || head.next==null)return head;
+        Node oddStart=new Node(0);
+        Node evenStart=new Node(0);
+        Node even=evenStart;
+        Node odd=oddStart;
+        Node curr=head;
+        while(curr!=null){
+        if(curr.data%2==0){
+            even.next=curr;
+            even=even.next;
+        }else{
+           odd.next=curr;
+           odd=odd.next;
+        }
+        curr=curr.next;
+        }
+        odd.next=null;
+        even.next=oddStart.next;
+        return evenStart.next;
+        
+    }
+}
