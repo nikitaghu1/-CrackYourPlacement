@@ -1,0 +1,34 @@
+class Solution {
+
+    // Rearrange the linked list in the form a < b > c < d > e < f ...
+    void zigzagRearrange(Node head) {
+        if (head == null || head.next == null) return;
+
+        boolean flag = true;  // Start with "<" relation
+
+        Node current = head;
+
+        while (current.next != null) {
+            if (flag) { // a < b
+                if (current.data > current.next.data) {
+                    // Swap data
+                    int temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                }
+            } else { // a > b
+                if (current.data < current.next.data) {
+                    // Swap data
+                    int temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                }
+            }
+
+            // Move to the next pair
+            current = current.next;
+            // Toggle the flag for next comparison
+            flag = !flag;
+        }
+    }
+}
